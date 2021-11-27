@@ -1,6 +1,8 @@
 package fr.univ_amu.iut.beans;
 
-public class Etudiant {
+import java.io.Serializable;
+
+public class Etudiant implements Serializable {
     private int numEt;
     private String nomEt;
     private String prenomEt;
@@ -70,12 +72,14 @@ public class Etudiant {
 
     @Override
     public String toString() {
-        return "Etudiant [numEt=" + numEt + ", "
-                + (nomEt != null ? "nomEt=" + nomEt + ", " : "")
-                + (prenomEt != null ? "prenomEt=" + prenomEt + ", " : "")
-                + (cpEt != null ? "cpEt=" + cpEt + ", " : "")
-                + (villeEt != null ? "villeEt=" + villeEt + ", " : "")
-                + "annee=" + annee + ", groupe=" + groupe + ", "
-                + "]";
+        return "Etudiant{" +
+                "numEt=" + numEt +
+                ", nomEt='" + nomEt + '\'' +
+                ", prenomEt='" + prenomEt + '\'' +
+                ", cpEt='" + cpEt + '\'' +
+                ", villeEt='" + villeEt + '\'' +
+                ", annee=" + annee +
+                ", groupe=" + groupe +
+                '}';
     }
 }
