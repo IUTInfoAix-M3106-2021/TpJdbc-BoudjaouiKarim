@@ -2,16 +2,14 @@ package fr.univ_amu.iut;// Ne pas faire un copier/coller du pdf...
 
 // Importer les classes jdbc
 
+import fr.univ_amu.iut.JDBC.RowMappers.ConnexionUnique;
+
 import java.sql.*;
 import java.util.Arrays;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
-public class ExempleJDBC {
-    // Chaine de connexion
-    private static final String CONNECT_URL = "jdbc:mysql://mysql-boudjaoui.alwaysdata.net:3306/Gestion Pedagogique";
-    private static final String LOGIN = "boudjaoui";
-    private static final String PASSWORD = "Ctw8m7z13?";
+public class ExempleConnexion {
     // La requete de test
     private static final String reqEtudiantsAixois =
             "SELECT NUM_ET, NOM_ET, PRENOM_ET, CP_ET, VILLE_ET, ANNEE, GROUPE  " +
@@ -21,7 +19,7 @@ public class ExempleJDBC {
     public static void main(String[] args) throws SQLException {
         // Connexion a la base nedseb_gestionpedabd
         System.out.println("Connexion");
-        try (Connection conn = DriverManager.getConnection(CONNECT_URL, LOGIN, PASSWORD)) {
+        try (Connection conn = ConnexionUnique.getInstance().getConnection()) {
             System.out.println("Connecte\n");
             // Creation d'une instruction SQL
             Statement statement = conn.createStatement();

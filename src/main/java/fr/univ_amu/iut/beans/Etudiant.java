@@ -1,6 +1,8 @@
 package fr.univ_amu.iut.beans;
 
-public class Etudiant {
+import java.io.Serializable;
+
+public class Etudiant implements Serializable {
     private int numEt;
     private String nomEt;
     private String prenomEt;

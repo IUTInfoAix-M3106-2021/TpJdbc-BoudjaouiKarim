@@ -1,6 +1,8 @@
 package fr.univ_amu.iut.beans;
 
-public class Module {
+import java.io.Serializable;
+
+public class Module  implements Serializable {
     private String code;
     private String libelle;
     private int hCoursPrev;

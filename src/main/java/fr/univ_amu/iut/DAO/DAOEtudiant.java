@@ -8,6 +8,8 @@ import java.util.List;
 public interface DAOEtudiant extends DAO<Etudiant> {
     int computeNbEtudiant();
 
+    List<Etudiant> findByVille(String villeEt);
+
     List<Etudiant> findByAnnee(int annee);
 
     List<Etudiant> findByGroupe(int groupe);

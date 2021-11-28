@@ -1,6 +1,8 @@
 package fr.univ_amu.iut.beans;
 
-public class Prof {
+import java.io.Serializable;
+
+public class Prof  implements Serializable {
     private int numProf;
     private String nomProf;
     private String prenomProf;

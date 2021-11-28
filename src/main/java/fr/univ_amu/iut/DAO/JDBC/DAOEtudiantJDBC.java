@@ -2,18 +2,29 @@ package fr.univ_amu.iut.DAO.JDBC;
 
 import fr.univ_amu.iut.DAO.DAOEtudiant;
 import fr.univ_amu.iut.JDBC.ResultSetStreamer;
+import fr.univ_amu.iut.JDBC.RowMappers.ConnexionUnique;
 import fr.univ_amu.iut.JDBC.RowMappers.EtudiantMapper;
 import fr.univ_amu.iut.beans.Etudiant;
 
 import java.sql.Connection;
+import java.sql.SQLException;
 import java.util.List;
 import java.util.stream.Collectors;
 
 public final class DAOEtudiantJDBC implements DAOEtudiant {
+
+
     private Connection connection;
 
-    DAOEtudiantJDBC() {
+
+    public DAOEtudiantJDBC() {
+       try{
+           this.connection = ConnexionUnique.getInstance().getConnection();
+       } catch (SQLException e){
+           //
+       }
     }
+
 
     @Override
     public int computeNbEtudiant() {
@@ -21,9 +32,23 @@ public final class DAOEtudiantJDBC implements DAOEtudiant {
     }
 
     @Override
-    public List<Etudiant> findByAnnee(int annee) {
-        return null;
+    public List<Etudiant> findByVille(String villeEt) {
+        // La requete get all Etudiant by ville
+        String reqEtudiantsAixois =
+                "SELECT NUM_ET, NOM_ET, PRENOM_ET, CP_ET, VILLE_ET, ANNEE, GROUPE  " +
+                        "FROM ETUDIANT " +
+                        "WHERE VILLE_ET = '" + villeEt + "'";
+
+        return ResultSetStreamer.stream(connection, reqEtudiantsAixois, new EtudiantMapper()).collect(Collectors.toList());
     }
+
+    @Override
+    public List<Etudiant> findByAnnee(int annee) {
+        // La requete get Etudiants by annee
+        String reqEtudiantsAnnee =
+                "SELECT * FROM ETUDIANT WHERE ANNEE = " + annee;
+
+        return ResultSetStreamer.stream(connection, reqEtudiantsAnnee, new EtudiantMapper()).collect(Collectors.toList());    }
 
     @Override
     public List<Etudiant> findByGroupe(int groupe) {
