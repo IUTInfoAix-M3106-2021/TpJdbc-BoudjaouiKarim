@@ -72,14 +72,12 @@ public class Etudiant implements Serializable {
 
     @Override
     public String toString() {
-        return "Etudiant{" +
-                "numEt=" + numEt +
-                ", nomEt='" + nomEt + '\'' +
-                ", prenomEt='" + prenomEt + '\'' +
-                ", cpEt='" + cpEt + '\'' +
-                ", villeEt='" + villeEt + '\'' +
-                ", annee=" + annee +
-                ", groupe=" + groupe +
-                '}';
+        return "Etudiant [numEt=" + numEt + ", "
+                + (nomEt != null ? "nomEt=" + nomEt + ", " : "")
+                + (prenomEt != null ? "prenomEt=" + prenomEt + ", " : "")
+                + (cpEt != null ? "cpEt=" + cpEt + ", " : "")
+                + (villeEt != null ? "villeEt=" + villeEt + ", " : "")
+                + "annee=" + annee + ", groupe=" + groupe + ", "
+                + "]";
     }
 }
