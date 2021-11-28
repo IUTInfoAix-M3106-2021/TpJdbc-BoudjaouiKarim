@@ -44,8 +44,11 @@ public final class DAOEtudiantJDBC implements DAOEtudiant {
 
     @Override
     public List<Etudiant> findByAnnee(int annee) {
-        return null;
-    }
+        // La requete get Etudiants by annee
+        String reqEtudiantsAnnee =
+                "SELECT * FROM ETUDIANT WHERE ANNEE = " + annee;
+
+        return ResultSetStreamer.stream(connection, reqEtudiantsAnnee, new EtudiantMapper()).collect(Collectors.toList());    }
 
     @Override
     public List<Etudiant> findByGroupe(int groupe) {
